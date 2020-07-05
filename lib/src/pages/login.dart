@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
     Map<String, dynamic> responseMap = jsonDecode(resp.body);
     print(responseMap["message"]);
     if (responseMap["message"] == 'Authentication OK') {
-      Navigator.pushNamed(context, 'sesion');
+      Navigator.pushNamed(context, 'menu');
     } else {
       Alerta(context);
     }
