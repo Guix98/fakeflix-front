@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fakeflix_app/src/token.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,9 +28,10 @@ class _LoginState extends State<Login> {
     var resp = await http.post(url, body: body, headers: headers);
 
     Map<String, dynamic> responseMap = jsonDecode(resp.body);
+    Authn token = Authn(responseMap["authentication"], responseMap["refresh"]);
     print(responseMap["message"]);
     if (responseMap["message"] == 'Authentication OK') {
-      Navigator.pushNamed(context, 'menu');
+      Navigator.pushNamed(context, 'menu', arguments: token);
     } else {
       Alerta(context);
     }
